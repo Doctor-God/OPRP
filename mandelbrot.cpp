@@ -43,10 +43,11 @@ int main(int argc, char** argv){
 	// }
 	// MPI_Send(bloco + (size-1)*piece, max_row*max_column - (size-1)*piece, MPI_CHAR, size-1, tag, MPI_COMM_WORLD);
 
+	// offset = (r*max_column) + c
 
 	for (int f = rank*piece; f < my_max; ++f)
 	{
-		int r = f % max_column;
+		int r = f / max_column;
 		int c = f - r*max_column;
 
 		cout << "oi " << rank << " " << r << " " << f << endl;
