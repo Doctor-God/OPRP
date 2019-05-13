@@ -1,1 +1,1 @@
-for i in $(cat ips.txt);do scp $1  udesc@$i:~/ ; done;
+for i in $(cat $1);do scp $2  udesc@$i:~/ ; done;

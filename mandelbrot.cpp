@@ -13,6 +13,11 @@ int main(int argc, char** argv){
 	// cin >> max_column;
 	// cin >> max_n;
 
+	if(argc < 4){
+		cout << "Entrada como argumentos da linha de comando.\n";
+		exit(1);
+	}
+
 
 	MPI_Init(&argc,&argv);
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
@@ -38,19 +43,10 @@ int main(int argc, char** argv){
 		mat[i] = bloco + (i*max_column);
 
 
-	// for(int p = 0; p < size-1; p++){
-	// 	MPI_Send(bloco + p*piece, piece, MPI_CHAR, p, tag, MPI_COMM_WORLD);
-	// }
-	// MPI_Send(bloco + (size-1)*piece, max_row*max_column - (size-1)*piece, MPI_CHAR, size-1, tag, MPI_COMM_WORLD);
-
-	// offset = (r*max_column) + c
-
 	for (int f = rank*piece; f < my_max; ++f)
 	{
 		int r = f / max_column;
 		int c = f - r*max_column;
-
-		cout << "oi " << rank << " " << r << " " << f << endl;
 
 		complex<float> z;
 		int n = 0;
